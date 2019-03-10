@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<style>
+table {
+	table-layout: fixed;
+}
+
+table td {
+	vertical-align: middle !important;
+	height: 63px;
+}
+
+table td>p, .alert, table td>span {
+	position: absolute;
+	padding: 0;
+}
+</style>
+
+<title>Hello, my friend!</title>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1 class="display-4">
+				<em>Небольшой</em> сайт
+			</h1>
+			<hr class="my-4">
+			<dl class="row">
+				<dt class="col-sm-3">Особенности</dt>
+				<dd class="col-sm-9">
+					<p>Собственный редактор</p>
+					<p>
+						Использованные библиотек <em>Bootstrap</em>, <em>Font Awesome</em> и <em>jQuery</em>
+					</p>
+					<p>
+						Поддерживаются формулы (по аналогии с <em>Excel</em>)
+					</p>
+					<p>
+						Загрузка и выгрузка файлов <strong>на клиенте</strong>
+					</p>
+					<p>
+						Для разбора формул используется стек, проводящий вычесление по <em>Обратнай Польской Записи</em> (<em>RPN</em>)
+					</p>
+					<p>Выводятся причины ошибок в ячейках</p>
+				</dd>
+				<dt class="col-sm-3">Возможности</dt>
+				<dd class="col-sm-9">
+					<p>Использование математических операций: +, -, * и /</p>
+					<p>Поддержка вещественных чисел, либо формул</p>
+					<p>Загрузка и выгрузка файлов в формате CSV</p>
+					<p>Изменение размеров таблицы (данные сохраняются в тех ячейках, которые остались после изменения)</p>
+				</dd>
+			</dl>
+		</div>
+		<div class="row align-items-center">
+			<div class="col">
+				<table class="table table-bordered"></table>
+				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+					<div class="btn-group" role="group">
+						<button class="btn btn-warning dropdown-toggle" type="button" id="dropdownEdit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="fas fa-edit"></span> Edit
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownEdit">
+							<div class="dropdown-item">
+								<form>
+									<div class="form-group row">
+										<label for="staticEmail" class="col-sm-6 col-form-label"><span class="fas fa-arrows-alt-h fa-fw"></span> Rows</label>
+										<div class="col-sm-6">
+											<input type="number" class="form-control" name="row" placeholder="Rows" value="5" min="1">
+										</div>
+									</div>
+									<div class="form-group row" style="width: 200px">
+										<label for="inputPassword" class="col-sm-6 col-form-label"><span class="fas fa-arrows-alt-v fa-fw"></span> Columns</label>
+										<div class="col-sm-6">
+											<input type="number" class="form-control" name="column" placeholder="Columns" value="5" min="1">
+										</div>
+									</div>
+									<button type="button" class="btn btn-success">
+										<span class="fas fa-check"></span> Success
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="btn-group" role="group">
+						<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="fas fa-file"></span> CSV
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<label class="dropdown-item btn btn-default"><span class="fas fa-file-import fa-fw"></span> Import<input type="file" name="file" accept=".csv" style="display: none;"></label><a class="dropdown-item" href="#" id="download"><span class="fas fa-file-download fa-fw"></span> Export</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery first, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+	<!-- CSV Editor -->
+	<script src="/js/myeval.js"></script>
+	<script src="/js/csvedit.js"></script>
+
+	<!-- For Example -->
+	<script>
+		$(function() {
+			csvEdit.init({
+				table : $('table'),
+				rows : 5,
+				columns : 5
+			});
+
+			var editForm = $('#dropdownEdit+div form');
+			var editRow = editForm.find('input[name="row"]');
+			var editColumn = editForm.find('input[name="column"]');
+
+			editForm.find('button').click(function() {
+				csvEdit.resize(editRow.val(), editColumn.val());
+			});
+
+			// :) Local Upload Example
+			$('input[type="file"]').change(function() {
+				var files = $(this).prop('files');
+				var file = files[files.length - 1];
+				var fileReader = new FileReader();
+				fileReader.onload = function() {
+					csvEdit.readCsv(fileReader.result);
+				}
+				fileReader.readAsText(file, 'utf8');
+			});
+
+			// :) Local Download Example
+			$('a#download').click(function() {
+				var self = $(this);
+				var data = csvEdit.writeCsv();
+
+				var encodedData = encodeURIComponent(data);
+
+				self.attr('href', `data:text/csv;charset=utf8,${encodedData}`).attr('download', 'export.csv');
+			});
+		});
+	</script>
+</body>
+</html>
